@@ -6,5 +6,5 @@
     "browser": true
   },
   "parser": "babel-eslint",
-  "parserOptions": { "ecmaVersion": 12, "sourceType": "module" }
+  "parserOptions": { "ecmaVersion": 12}
 }
