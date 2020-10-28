@@ -85,4 +85,10 @@ Resources:
               Resource:
                 - !Sub arn:aws:s3:::${BucketName}
                 - !Sub arn:aws:s3:::${BucketName}/*
+        - PolicyName: s3
+          PolicyDocument:
+            Statement:
+            - Effect: Allow
+              Action:
+                - iam:PutRole
       PermissionsBoundary: !Sub 'arn:${AWS::Partition}:iam::${AWS::AccountId}:policy/CodeStar_${ProjectId}_PermissionsBoundary'
