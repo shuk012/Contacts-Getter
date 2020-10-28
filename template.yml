@@ -24,11 +24,11 @@ Globals:
       Role: !Ref CodeDeployRole
 
 Resources:
-  GetHelloWorld:
+  GetContacts:
     Type: AWS::Serverless::Function
     Properties:
-      FunctionName: !Sub 'awscodestar-${ProjectId}-lambda-GetHelloWorld'
-      Handler: index.get
+      FunctionName: !Sub 'awscodestar-${ProjectId}-lambda-GetContacts'
+      Handler: index.getContacts
       Runtime: nodejs12.x
       Role:
         Fn::GetAtt:
