@@ -1,10 +1,10 @@
 'use strict';
 
-import { readFileSync } from 'fs';
-import { sep } from 'path';
+var fs = require('fs');
+var path = require('path');
 
-module.exports.getContacts = (event, context, callback) => {
-  var contents = readFileSync(`public${sep}index.html`);
+exports.getContacts = function(event, context, callback) {
+  var contents = fs.readFileSync(`public${path.sep}index.html`);
   var result = {
     statusCode: 200,
     body: contents.toString(),
@@ -12,4 +12,4 @@ module.exports.getContacts = (event, context, callback) => {
   };
 
   callback(null, result);
-}
+};
