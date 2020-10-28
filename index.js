@@ -3,7 +3,7 @@
 import { readFileSync } from 'fs';
 import { sep } from 'path';
 
-export function getContacts(event, context, callback) {
+module.exports.getContacts = (event, context, callback) => {
   var contents = readFileSync(`public${sep}index.html`);
   var result = {
     statusCode: 200,
