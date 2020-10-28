@@ -18,6 +18,9 @@
         "test": "mocha --recursive tests"
     },
     "dependencies": {
-        "eslint": "^7.12.1"
+        "aws-sdk": "^2.781.0",
+        "eslint": "^7.12.1",
+        "hunterio": "^1.0.0",
+        "line-reader": "^0.4.0"
     }
 }

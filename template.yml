@@ -58,6 +58,9 @@ Resources:
           Properties:
             Path: /
             Method: get
+      Environment:
+        Variables:
+          HUNTER_KEY: c82985fe22ffaa579f44ce44ece125be049bbcc4
   LambdaExecutionRole:
     Description: Creating service role in IAM for AWS Lambda
     Type: AWS::IAM::Role
