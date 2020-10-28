@@ -1,0 +1,32 @@
+{
+  "configurations": [
+    {
+      "type": "aws-sam",
+      "request": "direct-invoke",
+      "name": "Contacts-Getter:GetContacts",
+      "invokeTarget": {
+        "target": "template",
+        "templatePath": "template.yml",
+        "logicalId": "GetContacts"
+      },
+      "lambda": {
+        "payload": {},
+        "environmentVariables": {}
+      }
+    },
+    {
+      "type": "aws-sam",
+      "request": "direct-invoke",
+      "name": "Contacts-Getter:GetContacts",
+      "invokeTarget": {
+        "target": "template",
+        "templatePath": "template.yml",
+        "logicalId": "GetContacts"
+      },
+      "lambda": {
+        "payload": {},
+        "environmentVariables": {}
+      }
+    }
+  ]
+}
