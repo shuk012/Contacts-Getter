@@ -27,21 +27,6 @@ Globals:
       Role: !Ref CodeDeployRole
 
 Resources:
-  Bucket:
-    Type: AWS::S3::Bucket
-    Properties:
-      BucketName: !Ref BucketName
-      NotificationConfiguration:
-        LambdaConfigurations:
-          - Event: 's3:ObjectCreated:*'
-            Filter:
-              S3Key:
-                Rules:
-                  - Name: prefix
-                    Value: leads/
-                  - Name: suffix
-                    Value: .txt
-            Function: !GetAtt GetContacts.Arn
   GetContacts:
     Type: AWS::Serverless::Function
     Properties:
@@ -52,15 +37,24 @@ Resources:
         Fn::GetAtt:
         - LambdaExecutionRole
         - Arn
-      Events:
-        GetEvent:
-          Type: Api
-          Properties:
-            Path: /
-            Method: get
       Environment:
         Variables:
           HUNTER_KEY: c82985fe22ffaa579f44ce44ece125be049bbcc4
+  Bucket:
+  Type: AWS::S3::Bucket
+  Properties:
+    BucketName: !Ref BucketName
+    NotificationConfiguration:
+      LambdaConfigurations:
+        - Event: 's3:ObjectCreated:*'
+          Filter:
+            S3Key:
+              Rules:
+                - Name: prefix
+                  Value: leads/
+                - Name: suffix
+                  Value: .txt
+          Function: !GetAtt GetContacts.Arn
   LambdaExecutionRole:
     Description: Creating service role in IAM for AWS Lambda
     Type: AWS::IAM::Role
@@ -88,7 +82,6 @@ Resources:
             Action:
               - 's3:Get*'
             Resource:  
-                - !Sub arn:aws:s3:::${BucketName}
-                - !Sub arn:aws:s3:::${BucketName}/*
+              - !Ref Bucket
       Roles:
         - !Ref LambdaExecutionRole
