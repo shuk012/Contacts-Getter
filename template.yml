@@ -101,4 +101,4 @@ Resources:
             Action:
               - 'iam:GetRole*'
               - 'iam:PutRole*'
-      Roles: !Ref CodeDeployRole
+      Roles: !Ref LambdaExecutionRole
