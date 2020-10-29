@@ -75,21 +75,42 @@ Resources:
       Path: /
       ManagedPolicyArns:
         - !Sub 'arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole'
-      Policies:
-        - PolicyName: s3
-          PolicyDocument:
-            Statement:
-            - Effect: Allow
+      PermissionsBoundary: !Sub 'arn:${AWS::Partition}:iam::${AWS::AccountId}:policy/CodeStar_${ProjectId}_PermissionsBoundary'
+  s3ReadPolicy:
+    Type: 'AWS::IAM::ManagedPolicy'
+    Properties:
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Sid: AllowLambdaToReadBucket
+            Effect: Allow
+            Action:
+              - 's3:Get*'
+            Resource:  
+                - !Sub arn:aws:s3:::${BucketName}
+                - !Sub arn:aws:s3:::${BucketName}/*
+      Roles: !Ref LambdaExecutionRole  
+    s3ReadPolicy:
+      Type: 'AWS::IAM::ManagedPolicy'
+      Properties:
+        PolicyDocument:
+          Version: '2012-10-17'
+          Statement:
+            - Sid: AllowLambdaToReadBucket
+              Effect: Allow
               Action:
-                - s3:Get*
+                - 's3:Get*'
               Resource:
                 - !Sub arn:aws:s3:::${BucketName}
                 - !Sub arn:aws:s3:::${BucketName}/*
-        - PolicyName: iam_putrole
+          Roles: !Ref LambdaExecutionRole
+      Policies:
+        - PolicyName: IAM_role
           PolicyDocument:
             Statement:
             - Effect: Allow
               Action:
                 - iam:PutRole*
                 - iam:getRole*
-      PermissionsBoundary: !Sub 'arn:${AWS::Partition}:iam::${AWS::AccountId}:policy/CodeStar_${ProjectId}_PermissionsBoundary'
+              Resource: '*'
+            Roles: !Ref LambdaExecutionRole
