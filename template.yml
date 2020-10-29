@@ -75,6 +75,8 @@ Resources:
       Path: /
       ManagedPolicyArns:
         - !Sub 'arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole'
+        - !GetAtt S3ReadPolicy.Arn 
+        - !GetAtt IAMPolicy.Arn 
       PermissionsBoundary: !Sub 'arn:${AWS::Partition}:iam::${AWS::AccountId}:policy/CodeStar_${ProjectId}_PermissionsBoundary'
   S3ReadPolicy:
     Type: 'AWS::IAM::ManagedPolicy'
@@ -89,7 +91,6 @@ Resources:
             Resource:  
                 - !Sub arn:aws:s3:::${BucketName}
                 - !Sub arn:aws:s3:::${BucketName}/*
-      Roles: !Ref LambdaExecutionRole  
   IAMPolicy:
     Type: 'AWS::IAM::ManagedPolicy'
     Properties:
@@ -101,4 +102,3 @@ Resources:
             Action:
               - 'iam:GetRole*'
               - 'iam:PutRole*'
-      Roles: !Ref LambdaExecutionRole
