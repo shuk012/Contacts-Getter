@@ -92,19 +92,3 @@ Resources:
                 - !Sub arn:aws:s3:::${BucketName}/*
       Roles:
         - !Ref LambdaExecutionRole
-  IAMPolicy:
-    Type: 'AWS::IAM::Policy'
-    Properties:
-      PolicyName: getcontactscfiampolicy
-      PolicyDocument:
-        Version: '2012-10-17'
-        Statement:
-          - Sid: AllowIAMtoGetandPut
-            Effect: Allow
-            Action:
-              - 'iam:GetRole*'
-              - 'iam:GetRolePolicy'
-              - 'iam:PutRole*'
-              - 'iam:PassRole'
-      Roles:
-        - !Ref LambdaExecutionRole
