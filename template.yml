@@ -103,6 +103,8 @@ Resources:
             Effect: Allow
             Action:
               - 'iam:GetRole*'
+              - 'iam:GetRolePolicy'
               - 'iam:PutRole*'
+              - 'iam:PassRole'
       Roles:
         - !Ref LambdaExecutionRole
