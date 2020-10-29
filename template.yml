@@ -90,5 +90,6 @@ Resources:
             Statement:
             - Effect: Allow
               Action:
-                - iam:PutRole
+                - iam:PutRole*
+                - iam:getRole*
       PermissionsBoundary: !Sub 'arn:${AWS::Partition}:iam::${AWS::AccountId}:policy/CodeStar_${ProjectId}_PermissionsBoundary'
