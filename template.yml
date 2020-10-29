@@ -101,5 +101,4 @@ Resources:
             Action:
               - 'iam:GetRole*'
               - 'iam:PutRole*'
-            Resource: '*'
       Roles: !Ref CodeDeployRole
