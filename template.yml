@@ -76,7 +76,7 @@ Resources:
       ManagedPolicyArns:
         - !Sub 'arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole'
       PermissionsBoundary: !Sub 'arn:${AWS::Partition}:iam::${AWS::AccountId}:policy/CodeStar_${ProjectId}_PermissionsBoundary'
-  s3ReadPolicy:
+  S3ReadPolicy:
     Type: 'AWS::IAM::ManagedPolicy'
     Properties:
       PolicyDocument:
@@ -90,30 +90,16 @@ Resources:
                 - !Sub arn:aws:s3:::${BucketName}
                 - !Sub arn:aws:s3:::${BucketName}/*
       Roles: !Ref LambdaExecutionRole  
-    s3ReadPolicy:
+    IAMPolicy:
       Type: 'AWS::IAM::ManagedPolicy'
       Properties:
         PolicyDocument:
           Version: '2012-10-17'
           Statement:
-            - Sid: AllowLambdaToReadBucket
+            - Sid: AllowIAMtoGetandPut
               Effect: Allow
               Action:
-                - 's3:Get*'
-              Resource:
-                - !Sub arn:aws:s3:::${BucketName}
-                - !Sub arn:aws:s3:::${BucketName}/*
-        Roles: !Ref LambdaExecutionRole
-    IAMPolicy:
-          Type: 'AWS::IAM::ManagedPolicy'
-          Properties:
-            PolicyDocument:
-              Version: '2012-10-17'
-              Statement:
-                - Sid: AllowIAMtoGetandPut
-                  Effect: Allow
-                  Action:
-                    - 'iam:GetRole*'
-                    - 'iam:PutRole*'
-                  Resource: '*'
-          Roles: !Ref CodeDeployRole
+                - 'iam:GetRole*'
+                - 'iam:PutRole*'
+              Resource: '*'
+      Roles: !Ref CodeDeployRole
