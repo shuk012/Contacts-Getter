@@ -79,7 +79,7 @@ Resources:
   S3ReadPolicy:
     Type: 'AWS::IAM::Policy'
     Properties:
-      policyName: s3readpolicy
+      policyName: getcontactscfs3policy
       PolicyDocument:
         Version: '2012-10-17'
         Statement:
@@ -95,7 +95,7 @@ Resources:
   IAMPolicy:
     Type: 'AWS::IAM::Policy'
     Properties:
-      policyName: iampolicy
+      policyName: getcontactscfiampolicy
       PolicyDocument:
         Version: '2012-10-17'
         Statement:
