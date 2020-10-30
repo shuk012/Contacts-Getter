@@ -21,6 +21,7 @@
         "aws-sdk": "^2.781.0",
         "eslint": "^7.12.1",
         "hunterio": "^1.0.0",
-        "line-reader": "^0.4.0"
+        "line-reader": "^0.4.0",
+        "npm": "^6.14.8"
     }
 }
